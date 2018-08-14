@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+	<Properties>
+		<Property name="log-path">/logs/api/member-balance</Property>
+		<Property name="archive">${log-path}/archive</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console-Appender" target="SYSTEM_OUT">
+			<PatternLayout>
+				<pattern> [%d{yyyy-MM-dd HH:mm:ss.SSS} (%F:%L)] %M - %msg%n
+				</pattern>
+			</PatternLayout>
+		</Console>
+		<File name="memberbalance-file-appender" fileName="${log-path}/memberbalance.log">
+			<PatternLayout>
+				<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS} (%F:%L)] %M - %msg%n</pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<!--gspapiv2-File-Appender" -->
+		<Logger name="com.systems88.memberbalance" level="debug">
+			<AppenderRef ref="memberbalance-file-appender" />
+		</Logger>
+
+		<!-- HIBERNATE LOGGING -->
+		<!-- Log transaction related activity -->
+<!-- 		<Logger name="org.hibernate.transaction" level="TRACE">
+			<AppenderRef ref="Gatherer-core-worker-persistence-RollingFile" />
+		</Logger>
+		<Logger name="org.hibernate.SQL" level="TRACE">
+			<AppenderRef ref="Gatherer-core-worker-persistence-RollingFile" />
+		</Logger>
+		<Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE">
+			<AppenderRef ref="Gatherer-core-worker-persistence-RollingFile" />
+		</Logger> -->
+		<!-- HIBERNATE LOGGING -->
+<!-- 		<logger name="org.hibernate.cache">
+			<level value="DEBUG" />
+			<AppenderRef ref="Console-Appender" />
+		</logger>-->
+		<Root level="info">
+			<AppenderRef ref="Console-Appender" />
+		</Root> 
+	</Loggers>
+</Configuration>
